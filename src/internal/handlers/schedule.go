@@ -43,6 +43,10 @@ func (hdl *HTTPHandler) GetAvailableHours(c *gin.Context) {
 		Grupo:      grupo,
 	}
 	availableHours, err := hdl.horarioService.GetAvailableHours(terna)
+	var entries []domain.Entry
+	if err == nil {
+		entries, err = hdl.horarioService.GetSchedulerEntries(terna)
+	}
 
 	if err == apperrors.ErrInvalidInput { //The set request wasn' correct
 
@@ -55,7 +59,9 @@ func (hdl *HTTPHandler) GetAvailableHours(c *gin.Context) {
 
 		c.AbortWithStatusJSON(http.StatusInternalServerError, ErrorHttp{Message: "unkown"})
 	} else {
-		c.JSON(http.StatusOK, availableHours)
+
+		scheduler := SchedulerDTO{Entries: entries, AvailableHours: availableHours}
+		c.JSON(http.StatusOK, scheduler)
 
 	}
 

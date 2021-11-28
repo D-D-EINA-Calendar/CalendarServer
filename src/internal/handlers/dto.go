@@ -10,6 +10,7 @@ type TernaDto struct {
 
 type SchedulerDTO struct {
 	AvailableHours []domain.AvailableHours `json:"availableHours"`
+	Entries        []domain.Entry          `json:"entries"`
 }
 
 func NewScheduler(availableHours []domain.AvailableHours) SchedulerDTO {
