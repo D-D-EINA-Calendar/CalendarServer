@@ -23,7 +23,45 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/availableHours/": {
+        "/listDegrees/": {
+            "get": {
+                "description": "List all degrees' descriptions avaiable, it do not require any parameter",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/handlers.ListDegreesDTO"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ErrorHttp"
+                        }
+                    }
+                }
+            }
+        },
+        "/ping/": {
+            "get": {
+                "description": "Response \"pong\" if the server is currrently available",
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns \"pong\" "
+                    }
+                }
+            }
+        },
+        "/scheduler/": {
             "get": {
                 "description": "List all the hours remaining for creaiting an entrie on the schedule",
                 "produces": [
@@ -73,44 +111,6 @@ var doc = `{
                         "schema": {
                             "$ref": "#/definitions/handlers.ErrorHttp"
                         }
-                    }
-                }
-            }
-        },
-        "/listDegrees/": {
-            "get": {
-                "description": "List all degrees' descriptions avaiable, it do not require any parameter",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/handlers.ListDegreesDTO"
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/handlers.ErrorHttp"
-                        }
-                    }
-                }
-            }
-        },
-        "/ping/": {
-            "get": {
-                "description": "Response \"pong\" if the server is currrently available",
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Returns \"pong\" "
                     }
                 }
             }

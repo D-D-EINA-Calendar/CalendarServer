@@ -31,8 +31,8 @@ func NewHTTPHandler(horarioService ports.HorarioService) *HTTPHandler {
 //@Param grupo query int true "grupo de las horas a obtener"
 //@Success 200 {array} SchedulerDTO
 // @Failure 400,404 {object} ErrorHttp
-//@Router /availableHours/ [get]
-func (hdl *HTTPHandler) GetAvailableHours(c *gin.Context) {
+//@Router /scheduler/ [get]
+func (hdl *HTTPHandler) GetScheduler(c *gin.Context) {
 
 	titulacion := c.Query("titulacion")
 	curso, _ := strconv.Atoi(c.Query("year"))
