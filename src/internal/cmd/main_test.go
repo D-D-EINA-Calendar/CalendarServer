@@ -63,7 +63,10 @@ func TestGetAvailableHours(t *testing.T) {
 				Curso:      2,
 				Grupo:      "1",
 			}},
-			want: want{result: availableHours.AvailableHours, code: http.StatusOK},
+			want: want{result: handlers.SchedulerDTO{
+				AvailableHours: availableHours.AvailableHours,
+				Entries:        []domain.Entry{simpleTheoricalEntry().ToEntry()}},
+				code: http.StatusOK},
 			mocks: func(m mocks) {
 				m.horarioService.EXPECT().GetAvailableHours(domain.Terna{
 					Titulacion: "Ing.Informática",
@@ -72,7 +75,7 @@ func TestGetAvailableHours(t *testing.T) {
 				m.horarioService.EXPECT().GetSchedulerEntries(domain.Terna{
 					Titulacion: "Ing.Informática",
 					Curso:      2,
-					Grupo:      "1"}).Return([]domain.Entry{simpleTheoricalEntry().ToEntry()})
+					Grupo:      "1"}).Return([]domain.Entry{simpleTheoricalEntry().ToEntry()}, nil)
 			},
 		},
 		{
