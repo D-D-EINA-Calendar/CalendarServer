@@ -49,6 +49,21 @@ func (mr *MockHorarioServiceMockRecorder) GetAvailableHours(terna interface{}) *
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAvailableHours", reflect.TypeOf((*MockHorarioService)(nil).GetAvailableHours), terna)
 }
 
+// GetSchedulerEntries mocks base method.
+func (m *MockHorarioService) GetSchedulerEntries(terna domain.Terna) ([]domain.Entry, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetSchedulerEntries", terna)
+	ret0, _ := ret[0].([]domain.Entry)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetSchedulerEntries indicates an expected call of GetSchedulerEntries.
+func (mr *MockHorarioServiceMockRecorder) GetSchedulerEntries(terna interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetSchedulerEntries", reflect.TypeOf((*MockHorarioService)(nil).GetSchedulerEntries), terna)
+}
+
 // ListAllDegrees mocks base method.
 func (m *MockHorarioService) ListAllDegrees() ([]domain.DegreeDescription, error) {
 	m.ctrl.T.Helper()
