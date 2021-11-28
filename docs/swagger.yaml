@@ -17,6 +17,30 @@ definitions:
           $ref: '#/definitions/domain.YearDescription'
         type: array
     type: object
+  domain.Entry:
+    properties:
+      end:
+        $ref: '#/definitions/domain.Hour'
+      group:
+        type: string
+      init:
+        $ref: '#/definitions/domain.Hour'
+      room:
+        $ref: '#/definitions/domain.Room'
+      subject:
+        $ref: '#/definitions/domain.Subject'
+      week:
+        type: string
+      weekday:
+        type: integer
+    type: object
+  domain.Hour:
+    type: object
+  domain.Room:
+    properties:
+      name:
+        type: string
+    type: object
   domain.Subject:
     properties:
       kind:
@@ -68,6 +92,17 @@ definitions:
           $ref: '#/definitions/domain.DegreeDescription'
         type: array
     type: object
+  handlers.SchedulerDTO:
+    properties:
+      availableHours:
+        items:
+          $ref: '#/definitions/domain.AvailableHours'
+        type: array
+      entries:
+        items:
+          $ref: '#/definitions/domain.Entry'
+        type: array
+    type: object
 info:
   contact: {}
 paths:
@@ -97,7 +132,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/domain.AvailableHours'
+              $ref: '#/definitions/handlers.SchedulerDTO'
             type: array
         "400":
           description: Bad Request

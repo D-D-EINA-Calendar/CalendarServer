@@ -58,7 +58,7 @@ var doc = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/domain.AvailableHours"
+                                "$ref": "#/definitions/handlers.SchedulerDTO"
                             }
                         }
                     },
@@ -172,6 +172,43 @@ var doc = `{
                 }
             }
         },
+        "domain.Entry": {
+            "type": "object",
+            "properties": {
+                "end": {
+                    "$ref": "#/definitions/domain.Hour"
+                },
+                "group": {
+                    "type": "string"
+                },
+                "init": {
+                    "$ref": "#/definitions/domain.Hour"
+                },
+                "room": {
+                    "$ref": "#/definitions/domain.Room"
+                },
+                "subject": {
+                    "$ref": "#/definitions/domain.Subject"
+                },
+                "week": {
+                    "type": "string"
+                },
+                "weekday": {
+                    "type": "integer"
+                }
+            }
+        },
+        "domain.Hour": {
+            "type": "object"
+        },
+        "domain.Room": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
         "domain.Subject": {
             "type": "object",
             "properties": {
@@ -250,6 +287,23 @@ var doc = `{
                     }
                 }
             }
+        },
+        "handlers.SchedulerDTO": {
+            "type": "object",
+            "properties": {
+                "availableHours": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.AvailableHours"
+                    }
+                },
+                "entries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.Entry"
+                    }
+                }
+            }
         }
     }
 }`
@@ -305,5 +359,5 @@ func (s *s) ReadDoc() string {
 }
 
 func init() {
-	swag.Register(swag.Name, &s{})
+	swag.Register("swagger", &s{})
 }
