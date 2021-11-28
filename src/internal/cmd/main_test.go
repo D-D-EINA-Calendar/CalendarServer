@@ -57,7 +57,7 @@ func TestGetAvailableHours(t *testing.T) {
 		mocks func(m mocks)
 	}{
 		{
-			name: "Should return available hours succesfully",
+			name: "Should return a scheduler",
 			args: args{terna: handlers.TernaDto{
 				Titulacion: "Ing.Informática",
 				Curso:      2,
@@ -69,6 +69,10 @@ func TestGetAvailableHours(t *testing.T) {
 					Titulacion: "Ing.Informática",
 					Curso:      2,
 					Grupo:      "1"}).Return(simpleAvailableHours(), nil)
+				m.horarioService.EXPECT().GetSchedulerEntries(domain.Terna{
+					Titulacion: "Ing.Informática",
+					Curso:      2,
+					Grupo:      "1"}).Return([]domain.Entry{simpleTheoricalEntry().ToEntry()})
 			},
 		},
 		{
