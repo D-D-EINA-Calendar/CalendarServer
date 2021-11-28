@@ -148,13 +148,13 @@ func TestGetAvailableHours(t *testing.T) {
 			setUpRouter := func() *gin.Engine {
 				horarioHandler := handlers.NewHTTPHandler(m.horarioService)
 				r := gin.Default()
-				r.GET("/availableHours", horarioHandler.GetAvailableHours)
+				r.GET("/scheduler", horarioHandler.GetScheduler)
 				return r
 
 			}
 			r := setUpRouter()
 			w := httptest.NewRecorder()
-			uri := "/availableHours?titulacion=" + tt.args.terna.Titulacion +
+			uri := "/scheduler?titulacion=" + tt.args.terna.Titulacion +
 				"&year=" + strconv.Itoa(tt.args.terna.Curso) + "&group=" + tt.args.terna.Grupo
 			req, _ := http.NewRequest("GET", uri, nil)
 			r.ServeHTTP(w, req)
