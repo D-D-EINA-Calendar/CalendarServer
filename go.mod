@@ -57,3 +57,5 @@ require (
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
 	github.com/urfave/cli/v2 v2.3.0 // indirect
 )
+
+require github.com/streadway/amqp v1.0.0 // indirect
